@@ -1,0 +1,15 @@
+# Core
+requests==2.31.0
+beautifulsoup4==4.12.3
+lxml==5.1.0
+pyyaml==6.0.1
+
+# PDF generation
+reportlab==4.1.0
+
+# Browser automation (required for Naukri)
+playwright==1.42.0
+# spacy==3.7.4                # smart JD parsing
+# rapidfuzz==3.6.2            # fuzzy dedup
+# anthropic==0.20.0           # LLM-based tailoring
+# openai==1.13.3              # alternative LLM
