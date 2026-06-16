@@ -48,7 +48,13 @@ class NaukriScraper(BaseScraper):
         sf = self.config.get("search", {}).get("salary_filter", {})
         salary_qs = ""
         if sf.get("enabled", False):
-            salary_qs = "?ctcFilter=10to15&ctcFilter=15to25"
+            min_lpa = float(sf.get("min_lpa", 3))
+            if min_lpa <= 6:
+                salary_qs = "?ctcFilter=3to6&ctcFilter=6to10&ctcFilter=10to15"
+            elif min_lpa <= 10:
+                salary_qs = "?ctcFilter=6to10&ctcFilter=10to15&ctcFilter=15to25"
+            else:
+                salary_qs = "?ctcFilter=10to15&ctcFilter=15to25"
         if loc == "remote":
             base = f"{self.BASE_URL}/{kw}-jobs"
         else:

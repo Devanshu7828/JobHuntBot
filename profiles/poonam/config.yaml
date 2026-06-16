@@ -1,0 +1,188 @@
+# ─────────────────────────────────────────────────────────────
+#  JobHuntBot — Poonam Rajak (Data Analyst / Data Science)
+#  Run: py main.py --config profiles/poonam/config.yaml
+# ─────────────────────────────────────────────────────────────
+
+candidate:
+  name: "Poonam Rajak"
+  email: "poonamrajak1075@gmail.com"
+  phone: "+91-78288-96218"
+  location: "Jabalpur, India"
+  linkedin: "linkedin.com/in/poonam-rajak"
+  github: "github.com/Poonam7828"
+  experience_years: 0
+
+search:
+  keywords:
+    - "Data Analyst"
+    - "Data Science"
+    - "Junior Data Analyst"
+    - "Data Engineer Fresher"
+    - "Business Analyst"
+    - "Power BI Developer"
+    - "Python Data Analyst"
+    - "Analytics Engineer"
+    - "ML Engineer Fresher"
+    - "Data Analyst Intern"
+
+  salary_filter:
+    enabled: true
+    min_lpa: 3          # entry-level floor
+    max_lpa: 12         # upper band for fresher / junior data roles
+    include_undisclosed: true
+
+  locations:
+    - "Pune"
+    - "Gurgaon"
+    - "Remote"
+    - "Bengaluru"
+    - "Indore"
+
+  experience_filter: "0-2 years"
+  job_type: "Full Time"
+  max_jobs_per_platform: 50
+
+verify_ssl: false
+
+platforms:
+  linkedin:
+    enabled: true
+    base_url: "https://www.linkedin.com/jobs/search/"
+  naukri:
+    enabled: true
+    base_url: "https://www.naukri.com"
+    browser_channel: "msedge"
+    headless: true
+    page_timeout_ms: 30000
+    max_keywords: 5
+    max_locations: 5
+  indeed:
+    enabled: true
+    base_url: "https://in.indeed.com"
+  hirist:
+    enabled: true
+    base_url: "https://www.hirist.tech"
+    browser_channel: "msedge"
+    headless: true
+    page_timeout_ms: 30000
+    max_keywords: 3
+    max_locations: 3
+  instahyre:
+    enabled: true
+    base_url: "https://www.instahyre.com"
+    browser_channel: "msedge"
+    headless: true
+    page_timeout_ms: 30000
+    max_keywords: 3
+    max_locations: 3
+  shine:
+    enabled: true
+    base_url: "https://www.shine.com"
+    max_keywords: 3
+    max_locations: 3
+  foundit:
+    enabled: true
+    base_url: "https://www.foundit.in"
+    max_keywords: 3
+    max_locations: 3
+  wellfound:
+    enabled: false
+    base_url: "https://wellfound.com/jobs"
+    browser_channel: "msedge"
+    headless: false
+    locale: ""
+    page_timeout_ms: 30000
+    max_keywords: 2
+  remotive:
+    enabled: false
+    base_url: "https://remotive.com"
+  remoteok:
+    enabled: false
+    base_url: "https://remoteok.com"
+  weworkremotely:
+    enabled: false
+    base_url: "https://weworkremotely.com"
+  glassdoor:
+    enabled: false
+    base_url: "https://www.glassdoor.co.in/Job"
+
+your_skills:
+  primary:
+    - "Python"
+    - "SQL"
+    - "Power BI"
+    - "Pandas"
+    - "NumPy"
+    - "MySQL"
+    - "EDA"
+    - "DAX"
+    - "Scikit-learn"
+    - "Matplotlib"
+    - "Git"
+    - "GitHub"
+    - "Jupyter"
+    - "Excel"
+    - "ETL"
+    - "Data Cleaning"
+  secondary:
+    - "Power Query"
+    - "Statistical Analysis"
+    - "Machine Learning"
+    - "NLP"
+    - "Streamlit"
+    - "Django"
+    - "MongoDB"
+    - "AWS"
+    - "KPI Dashboards"
+    - "Data Visualization"
+    - "Business Intelligence"
+    - "Tableau"
+    - "R"
+    - "Spark"
+    - "Airflow"
+  domain:
+    - "FinTech"
+    - "E-Commerce"
+    - "SaaS"
+    - "Healthcare"
+    - "Supply Chain"
+    - "Analytics"
+    - "Retail"
+    - "Banking"
+
+scoring:
+  primary_skill_match: 50
+  secondary_skill_match: 20
+  experience_match: 20
+  location_match: 10
+  role_relevance: 10
+  min_score_to_include: 30
+  role_terms:
+    - "data analyst"
+    - "data science"
+    - "data engineer"
+    - "business analyst"
+    - "analytics"
+    - "power bi"
+    - "python"
+    - "machine learning"
+    - "ml engineer"
+    - "bi developer"
+    - "fresher"
+    - "entry level"
+    - "junior"
+
+resume:
+  base_resume_path: "profiles/poonam/base_resume.json"
+  master_resume_pdf: "profiles/poonam/PoonamRajak_Data_Analyst_Resume_2026.pdf"
+  tailor_all: true
+  tailor_max: 50
+  tailor_top: 5
+  fetch_job_descriptions: true
+  output_dir: "output/poonam/resumes"
+  pdf_template: "resume/template.py"
+
+report:
+  output_dir: "output/poonam/jobs"
+  filename: "JobReport_{date}.html"
+  open_browser_after_run: true

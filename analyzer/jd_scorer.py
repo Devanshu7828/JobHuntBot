@@ -16,10 +16,25 @@ class JDScorer:
         self.search_keywords = [k.lower() for k in config["search"]["keywords"]]
         self.weights = config["scoring"]
         self.role_terms = [
+            t.lower() for t in config.get("scoring", {}).get("role_terms", [])
+        ] or [
             "qa", "sdet", "test engineer", "automation", "selenium",
             "quality assurance", "software test", "manual test", "manual testing",
             "manual qa", "api test", "quality analyst",
         ]
+        self.exp_min, self.exp_max = self._parse_experience_filter(
+            config.get("search", {}).get("experience_filter", ""),
+            config.get("candidate", {}).get("experience_years"),
+        )
+
+    def _parse_experience_filter(self, exp_filter: str, years: int = None) -> tuple:
+        """Parse '0-2 years' or use candidate experience as center band."""
+        m = re.search(r"(\d+)\s*[-–to]+\s*(\d+)", exp_filter or "")
+        if m:
+            return int(m.group(1)), int(m.group(2))
+        if years is not None:
+            return max(0, years - 1), years + 2
+        return 3, 6
 
     def score(self, job: Job) -> Job:
         """Score a job and attach match details to it."""
@@ -83,28 +98,34 @@ class JDScorer:
         return matched, score
 
     def _score_experience(self, text: str) -> float:
-        """Check if job experience range matches 3-6 years."""
+        """Check if job experience range matches configured target band."""
         patterns = [
             r"(\d+)\s*[-–to]+\s*(\d+)\s*years?",
             r"(\d+)\+?\s*years?\s*(?:of)?\s*experience",
+            r"fresher",
+            r"entry\s*level",
+            r"0\s*years?",
         ]
-        for pattern in patterns:
-            match = re.search(pattern, text)
+        text_lower = text.lower()
+        if self.exp_min <= 1 and any(t in text_lower for t in ("fresher", "entry level", "0 year", "graduate")):
+            return 100
+        for pattern in patterns[:2]:
+            match = re.search(pattern, text_lower)
             if match:
                 groups = match.groups()
                 try:
                     if len(groups) == 2:
                         min_exp = int(groups[0])
                         max_exp = int(groups[1])
-                        if min_exp <= 6 and max_exp >= 3:
+                        if min_exp <= self.exp_max and max_exp >= self.exp_min:
                             return 100
-                        elif min_exp <= 7:
+                        elif min_exp <= self.exp_max + 2:
                             return 70
                     else:
                         exp = int(groups[0])
-                        if 3 <= exp <= 7:
+                        if self.exp_min <= exp <= self.exp_max + 1:
                             return 100
-                        elif exp <= 8:
+                        elif exp <= self.exp_max + 3:
                             return 60
                 except Exception:
                     pass

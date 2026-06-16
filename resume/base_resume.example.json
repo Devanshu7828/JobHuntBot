@@ -1,0 +1,19 @@
+{
+  "name": "Your Name",
+  "title": "Your Professional Title",
+  "contact": {
+    "phone": "+91-XXXXXXXXXX",
+    "email": "you@example.com",
+    "location": "City, India",
+    "linkedin": "linkedin.com/in/your-profile",
+    "github": "github.com/yourusername"
+  },
+  "summary": "Brief professional summary.",
+  "skills": {
+    "primary": ["Skill 1", "Skill 2"]
+  },
+  "experience": [],
+  "projects": [],
+  "education": {},
+  "certifications": []
+}

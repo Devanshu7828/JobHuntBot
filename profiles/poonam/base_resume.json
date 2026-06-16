@@ -1,0 +1,77 @@
+{
+  "name": "Poonam Rajak",
+  "title": "Data Analyst | Data Engineer | Data Science Fresher",
+  "contact": {
+    "phone": "+91-78288-96218",
+    "email": "poonamrajak1075@gmail.com",
+    "location": "Jabalpur, India",
+    "linkedin": "linkedin.com/in/poonam-rajak",
+    "github": "github.com/Poonam7828"
+  },
+  "summary": "Data Science graduate (B.Tech CSE, 2026) seeking entry-level Data Analyst, Data Engineer, or data-focused full-time roles. Skilled in Python, SQL, Power BI, and DAX for data cleaning, EDA, ML modeling, and dashboard delivery. Currently a Data & AI Intern at Graphura India with a portfolio of 6+ projects on GitHub spanning supply chain analytics, NLP, semantic search, and BI dashboards. Certified by Deloitte, Tata, Oracle, AWS, and Salesforce.",
+  "skills": {
+    "languages": ["Python", "SQL", "DAX"],
+    "visualization": ["Power BI", "Advanced Excel", "Pivot Tables", "Power Query", "Matplotlib"],
+    "libraries": ["Pandas", "NumPy", "Scikit-learn"],
+    "databases": ["MySQL", "RDBMS", "MongoDB"],
+    "concepts": ["EDA", "ETL", "Data Cleaning", "KPI Dashboards", "Statistical Analysis", "Machine Learning", "NLP"],
+    "tools": ["Git", "GitHub", "Jupyter Notebook", "MS Office", "AWS", "Oracle OCI GenAI", "Streamlit", "Django"]
+  },
+  "experience": [
+    {
+      "title": "Data & AI Intern",
+      "company": "Graphura India Pvt. Ltd.",
+      "location": "India",
+      "duration": "Mar 2026 – Present",
+      "bullets": [
+        "Built EDA and preprocessing pipelines in Python on 10,000+ records, reducing manual preprocessing time by ~40%.",
+        "Engineered features and tuned ML models, contributing to ~15% improvement in prediction accuracy on assigned use cases.",
+        "Automated reporting workflows, reducing stakeholder turnaround time by ~20%."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "SkillSync Matcher — AI Resume Screening",
+      "url": "github.com/Poonam7828/skillsync-matcher",
+      "description": "AI-powered resume screening system achieving 85%+ matching accuracy using NLP similarity scoring; reduced manual screening effort by ~70%. Built with Python, Django, NLP, and Scikit-learn."
+    },
+    {
+      "name": "Supply Chain Performance Analysis",
+      "url": "github.com/Poonam7828/Supply-Chain-Performance-Analysis",
+      "description": "End-to-end analysis of delivery delays and profitability across supply chain datasets; identified key drivers of delay and margin leakage through statistical analysis using Python, Pandas, and Jupyter."
+    },
+    {
+      "name": "VectorMind Semantic Search",
+      "url": "github.com/Poonam7828/vectormind-semantic-search",
+      "description": "Semantic search engine using Sentence Transformers and vector embeddings in MongoDB; deployed interactive Streamlit UI for query-based document retrieval."
+    },
+    {
+      "name": "Weather Intelligence Dashboard",
+      "url": "github.com/Poonam7828/weather-intelligence-dashboard",
+      "description": "Real-time multi-city weather dashboard with automated ETL; created 10+ DAX KPIs and trend analytics reducing refresh time by ~60% using Power BI and REST API."
+    },
+    {
+      "name": "ElectroHub Sales Dashboard",
+      "url": "github.com/Poonam7828/electrohub-sales-data-analysis-powerbi-dashboard",
+      "description": "Interactive sales and profit dashboard with drill-down insights across categories, regions, and discount patterns using Power BI and DAX."
+    }
+  ],
+  "education": {
+    "degree": "B.Tech, Computer Science (Data Science)",
+    "institution": "Gyan Ganga Institute of Technology and Sciences, Jabalpur",
+    "year": "2026",
+    "grade": "CGPA 8.33 / 10"
+  },
+  "certifications": [
+    "Deloitte Data Analytics Simulation — Forage",
+    "Tata GenAI Powered Data Analytics — Forage",
+    "Oracle Cloud Infrastructure (OCI) Generative AI Professional",
+    "AWS Cloud Architecting & Data Engineering",
+    "Salesforce AI Agent Developer"
+  ],
+  "languages_spoken": [
+    "English (Professional)",
+    "Hindi (Native)"
+  ]
+}

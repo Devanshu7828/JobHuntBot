@@ -1,0 +1,63 @@
+# Copy to config.yaml and fill in your details (config.yaml is not committed to Git)
+candidate:
+  name: "Your Name"
+  email: "you@example.com"
+  phone: "+91-XXXXXXXXXX"
+  location: "City, India"
+  linkedin: "linkedin.com/in/your-profile"
+  github: "github.com/yourusername"
+  experience_years: 3
+
+search:
+  keywords:
+    - "Your Target Role"
+  salary_filter:
+    enabled: true
+    min_lpa: 10
+    max_lpa: 20
+    include_undisclosed: true
+  locations:
+    - "Pune"
+    - "Remote"
+  experience_filter: "2-5 years"
+  job_type: "Full Time"
+  max_jobs_per_platform: 50
+
+verify_ssl: true
+
+platforms:
+  naukri:
+    enabled: true
+    browser_channel: "msedge"
+    headless: true
+    max_keywords: 5
+    max_locations: 5
+  linkedin:
+    enabled: true
+  indeed:
+    enabled: true
+
+your_skills:
+  primary: []
+  secondary: []
+  domain: []
+
+scoring:
+  primary_skill_match: 50
+  secondary_skill_match: 20
+  experience_match: 20
+  location_match: 10
+  role_relevance: 10
+  min_score_to_include: 35
+
+resume:
+  base_resume_path: "resume/base_resume.json"
+  master_resume_pdf: "path/to/your/Master_Resume.pdf"
+  tailor_all: true
+  tailor_max: 50
+  fetch_job_descriptions: true
+  output_dir: "output/resumes"
+
+report:
+  output_dir: "output/jobs"
+  open_browser_after_run: true

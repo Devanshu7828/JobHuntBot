@@ -21,6 +21,9 @@ class ResumeTailor:
         "playwright", "cucumber", "bdd", "appium", "python", "docker",
         "kubernetes", "git", "github", "automation", "sdet", "manual testing",
         "regression", "integration", "e2e", "pom", "page object",
+        "pandas", "numpy", "power bi", "sql", "scikit-learn", "matplotlib",
+        "machine learning", "nlp", "etl", "eda", "dax", "tableau", "excel",
+        "data analyst", "data science", "analytics",
     ]
 
     def __init__(self, base_resume_path: str):
@@ -71,7 +74,19 @@ class ResumeTailor:
 
     def _tailor_title(self, resume: dict, job) -> dict:
         jd_title = job.title.lower()
-        if "sdet" in jd_title:
+        if "data science" in jd_title:
+            resume["title"] = "Data Science Fresher | Data Analyst | Python & ML"
+        elif "data engineer" in jd_title:
+            resume["title"] = "Data Engineer | Data Analyst | Python & SQL"
+        elif "power bi" in jd_title or "bi developer" in jd_title:
+            resume["title"] = "Data Analyst | Power BI Developer | DAX & SQL"
+        elif "business analyst" in jd_title:
+            resume["title"] = "Business Analyst | Data Analyst | Power BI & SQL"
+        elif "machine learning" in jd_title or "ml engineer" in jd_title:
+            resume["title"] = "ML Engineer Fresher | Data Science | Python"
+        elif "data analyst" in jd_title or "analytics" in jd_title:
+            resume["title"] = "Data Analyst | Data Science Fresher | Python & Power BI"
+        elif "sdet" in jd_title:
             resume["title"] = "SDET | Senior Test Engineer | QA Automation Engineer"
         elif "api" in jd_title and "automation" in jd_title:
             resume["title"] = "QA Automation Engineer | API Testing Specialist"

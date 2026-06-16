@@ -76,13 +76,20 @@ py -m playwright install chromium
 **Naukri** uses Playwright with your installed **Microsoft Edge** (`browser_channel: msedge` in `config.yaml`). Edge is already on Windows — no extra browser install needed. If Naukri shows "Access Denied", set `headless: false` under `platforms.naukri`.
 
 ### 3. Configure your profile
-Edit `config.yaml` — update keywords, locations, scoring weights, etc.
 
-Edit `resume/base_resume.json` if you want to update your master resume.
+**Included profile (Poonam — Data Analyst):**
+```powershell
+py main.py --config profiles/poonam/config.yaml
+```
+Or double-click `profiles/poonam/run.bat`.
+
+**Your own profile:** copy `config.example.yaml` → `config.yaml` and `resume/base_resume.example.json` → `resume/base_resume.json`, then edit both. Personal `config.yaml` and `resume/base_resume.json` are gitignored.
 
 ### 4. Run
 ```bash
-python main.py
+py main.py --config profiles/poonam/config.yaml
+# or, with your local config.yaml:
+py main.py
 ```
 
 The HTML report auto-opens in your browser. Tailored PDFs live in `output/resumes/`.

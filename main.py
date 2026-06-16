@@ -129,7 +129,7 @@ def _is_job_specific_resume(resume_path: str, master_resume_pdf: str = "") -> bo
     ):
         return False
     normalized = resume_path.replace("\\", "/").lower()
-    return "output/resumes" in normalized or "output\\resumes" in resume_path.lower()
+    return "/resumes/" in normalized or normalized.endswith("_resume.pdf")
 
 
 def deduplicate(jobs: list) -> list:
@@ -149,18 +149,27 @@ def deduplicate(jobs: list) -> list:
 # ───────────────────────────────────────────────────────────────────────────
 
 def tailor_for_job(job, tailor: ResumeTailor, candidate: dict, base_resume: dict,
-                   make_pdf: bool = True, master_resume_pdf: str = "") -> dict:
+                   make_pdf: bool = True, master_resume_pdf: str = "",
+                   resume_cfg: dict = None) -> dict:
     """
     Tailor resume + cover letter for a single job.
     Returns dict with paths and ethics status.
     """
+    resume_cfg = resume_cfg or {}
+    resume_dir = resume_cfg.get("output_dir", "output/resumes")
+    cover_dir = resume_cfg.get("cover_letter_dir") or resume_dir.replace(
+        "/resumes", "/cover_letters"
+    ).replace("\\resumes", "\\cover_letters")
+    os.makedirs(resume_dir, exist_ok=True)
+    os.makedirs(cover_dir, exist_ok=True)
+
     safe_company = "".join(c if c.isalnum() else "_" for c in job.company)[:30]
     safe_title   = "".join(c if c.isalnum() else "_" for c in job.title)[:40]
     file_stem = f"{safe_company}_{safe_title}_{date.today().isoformat()}"
 
-    resume_pdf_path  = f"output/resumes/{file_stem}_Resume.pdf"
-    cover_pdf_path   = f"output/cover_letters/{file_stem}_CoverLetter.pdf"
-    cover_txt_path   = f"output/cover_letters/{file_stem}_CoverLetter.txt"
+    resume_pdf_path  = os.path.join(resume_dir, f"{file_stem}_Resume.pdf")
+    cover_pdf_path   = os.path.join(cover_dir, f"{file_stem}_CoverLetter.pdf")
+    cover_txt_path   = os.path.join(cover_dir, f"{file_stem}_CoverLetter.txt")
 
     # Resume tailoring
     tailored, ethics_ok, violations = tailor.tailor(job, base_resume)
@@ -198,6 +207,8 @@ def tailor_for_job(job, tailor: ResumeTailor, candidate: dict, base_resume: dict
 
 def main():
     parser = argparse.ArgumentParser(description="JobHuntBot — QA Job Search Automation")
+    parser.add_argument("--config", default="config.yaml",
+                        help="Path to config YAML (e.g. profiles/poonam/config.yaml)")
     parser.add_argument("--platform", help="Single platform: naukri, linkedin, indeed, hirist, instahyre, shine, foundit, wellfound, remotive, remoteok, weworkremotely")
     parser.add_argument("--dry-run", action="store_true", help="Skip scraping, use saved data")
     parser.add_argument("--min-score", type=int, help="Override min match score")
@@ -213,7 +224,8 @@ def main():
     log.info("═" * 60)
 
     # Load config
-    config = load_config()
+    config = load_config(args.config)
+    log.info(f"Config: {args.config}")
     if not config.get("verify_ssl", True):
         urllib3.disable_warnings()
     import warnings
@@ -328,7 +340,8 @@ def main():
             log.info(f"  [{i}/{len(jobs_to_tailor)}] {job.match_score}% | {job.company} — {job.title}")
             result = tailor_for_job(job, tailor, candidate, base_resume,
                                      make_pdf=not args.no_pdf,
-                                     master_resume_pdf=master_resume_pdf)
+                                     master_resume_pdf=master_resume_pdf,
+                                     resume_cfg=resume_cfg)
             tailored_results[id(job)] = result
 
             # Track in DB
